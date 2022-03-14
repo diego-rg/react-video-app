@@ -1,5 +1,6 @@
 import React from "react";
 
+//Figura de cargando mentras non carga os datos da búsqueda
 const VideoDetail = ({ video }) => {
   if (!video) {
     return (

@@ -8,13 +8,21 @@ import youtube from "../apis/youtube";
 class App extends React.Component {
   state = { videos: [], selectedVideo: null };
 
+  //Para poñer como búsqueda inicial hippo, xa que did se invica despois de montar o componente
+  componentDidMount() {
+    this.onTermSubmit("hippo");
+  }
+
   onTermSubmit = async (term) => {
     const response = await youtube.get("/search", {
       params: {
         q: term,
       },
     });
-    this.setState({ videos: response.data.items });
+    this.setState({
+      videos: response.data.items,
+      selectedVideo: response.data.items[0], //poñemos por defecto un video para que saia no iframe
+    });
   };
 
   onVideoSelect = (video) => {
